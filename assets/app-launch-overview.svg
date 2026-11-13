@@ -1,0 +1,137 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="1254" viewBox="0 0 980 1254" font-family="-apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Noto Sans KR', 'Noto Sans CJK KR', sans-serif" xmlns:c2pa="http://c2pa.org/manifest">
+<style>
+  .band   { fill: #f6f8fa; stroke: #d1d9e0; stroke-width: 1.25; }
+  .box    { fill: #ffffff; stroke: #d1d9e0; stroke-width: 1; }
+  .bnum   { fill: #0969da; font-size: 16px; font-weight: 700; }
+  .btitle { fill: #1f2328; font-size: 16px; font-weight: 700; }
+  .bchange{ fill: #59636e; font-size: 12.5px; }
+  .name   { fill: #1f2328; font-size: 14px; font-weight: 600; }
+  .steps  { fill: #0969da; font-size: 11.5px; font-weight: 700; }
+  .desc   { fill: #59636e; font-size: 12.5px; }
+  .flow   { stroke: #0969da; stroke-width: 1.8; fill: none; }
+  .head   { fill: #0969da; }
+  .xlabel { fill: #0969da; font-size: 12.5px; font-weight: 600; }
+  .side   { stroke: #818b98; stroke-width: 1.4; fill: none; stroke-dasharray: 5 4; }
+  .side-head { fill: #818b98; }
+  .clabel { fill: #59636e; font-size: 12px; font-weight: 600; }
+  @media (prefers-color-scheme: dark) {
+    .band   { fill: #151b23; stroke: #3d444d; }
+    .box    { fill: #0d1117; stroke: #3d444d; }
+    .bnum, .steps { fill: #4493f8; }
+    .btitle, .name { fill: #f0f6fc; }
+    .bchange, .desc, .clabel { fill: #9198a1; }
+    .flow   { stroke: #4493f8; }
+    .head, .xlabel { fill: #4493f8; }
+    .side   { stroke: #656c76; }
+    .side-head { fill: #656c76; }
+  }
+</style>
+<rect class="band" x="20" y="20" width="940" height="278" rx="14"/>
+<text class="bnum" x="38" y="49">①</text>
+<text class="btitle" x="62" y="49">입력 해석</text>
+<text class="bchange" x="38" y="74">터치 좌표 →</text>
+<text class="bchange" x="38" y="92">"이 아이콘을 탭했다"</text>
+<rect class="band" x="20" y="332" width="940" height="186" rx="14"/>
+<text class="bnum" x="38" y="361">②</text>
+<text class="btitle" x="62" y="361">실행 요청</text>
+<text class="bchange" x="38" y="386">"이 앱을 열어라" →</text>
+<text class="bchange" x="38" y="404">launch job</text>
+<rect class="band" x="20" y="552" width="940" height="370" rx="14"/>
+<text class="bnum" x="38" y="581">③</text>
+<text class="btitle" x="62" y="581">프로세스 준비</text>
+<text class="bchange" x="38" y="606">launch job →</text>
+<text class="bchange" x="38" y="624">PID와 실행 환경,</text>
+<text class="bchange" x="38" y="642">저장된 PC = dyld</text>
+<rect class="band" x="20" y="956" width="940" height="278" rx="14"/>
+<text class="bnum" x="38" y="985">④</text>
+<text class="btitle" x="62" y="985">앱 시작</text>
+<text class="bchange" x="38" y="1010">dyld 진입 →</text>
+<text class="bchange" x="38" y="1028">AppDelegate 인스턴스</text>
+<rect class="box" x="250" y="42" width="400" height="54" rx="9"/>
+<text class="name" x="264" y="64">Simulator</text>
+<text class="steps" x="636" y="64" text-anchor="end">1</text>
+<text class="desc" x="264" y="84">터치 좌표 · 접촉 상태를 보낸다</text>
+<line class="flow" x1="450.0" y1="96" x2="450.0" y2="125"/>
+<path class="head" d="M444.0,124 L456.0,124 L450.0,134 Z"/>
+<text class="xlabel" x="464.0" y="120.0">입력 데이터</text>
+<rect class="box" x="250" y="134" width="400" height="54" rx="9"/>
+<text class="name" x="264" y="156">backboardd</text>
+<text class="steps" x="636" y="156" text-anchor="end">1–3</text>
+<text class="desc" x="264" y="176">HID 이벤트를 만들어 처리하고 보낸다</text>
+<line class="flow" x1="450.0" y1="188" x2="450.0" y2="217"/>
+<path class="head" d="M444.0,216 L456.0,216 L450.0,226 Z"/>
+<text class="xlabel" x="464.0" y="212.0">터치 입력 정보</text>
+<rect class="box" x="250" y="226" width="400" height="54" rx="9"/>
+<text class="name" x="264" y="248">SpringBoard · UIKitCore → SpringBoardHome</text>
+<text class="steps" x="636" y="248" text-anchor="end">4–5</text>
+<text class="desc" x="264" y="268">탭을 인식하고 아이콘의 앱을 고른다</text>
+<line class="flow" x1="450.0" y1="280" x2="450.0" y2="345"/>
+<path class="head" d="M444.0,344 L456.0,344 L450.0,354 Z"/>
+<text class="xlabel" x="464.0" y="322.0">앱 열기</text>
+<rect class="box" x="250" y="354" width="400" height="54" rx="9"/>
+<text class="name" x="264" y="376">SpringBoard · FrontBoard → RunningBoardServices</text>
+<text class="steps" x="636" y="376" text-anchor="end">6</text>
+<text class="desc" x="264" y="396">실행 요청을 만들어 보낸다</text>
+<line class="flow" x1="450.0" y1="408" x2="450.0" y2="437"/>
+<path class="head" d="M444.0,436 L456.0,436 L450.0,446 Z"/>
+<text class="xlabel" x="464.0" y="432.0">실행 요청 · foreground-interactive</text>
+<rect class="box" x="250" y="446" width="400" height="54" rx="9"/>
+<text class="name" x="264" y="468">runningboardd</text>
+<text class="steps" x="636" y="468" text-anchor="end">7</text>
+<text class="desc" x="264" y="488">launch job을 구성해 제출한다</text>
+<line class="flow" x1="450.0" y1="500" x2="450.0" y2="565"/>
+<path class="head" d="M444.0,564 L456.0,564 L450.0,574 Z"/>
+<text class="xlabel" x="464.0" y="542.0">launch job</text>
+<rect class="box" x="250" y="574" width="400" height="54" rx="9"/>
+<text class="name" x="264" y="596">launchd</text>
+<text class="steps" x="636" y="596" text-anchor="end">8–9</text>
+<text class="desc" x="264" y="616">작업을 기록하고 xpcproxy를 띄운다</text>
+<line class="flow" x1="450.0" y1="628" x2="450.0" y2="657"/>
+<path class="head" d="M444.0,656 L456.0,656 L450.0,666 Z"/>
+<text class="xlabel" x="464.0" y="652.0">posix_spawnp</text>
+<rect class="box" x="250" y="666" width="400" height="54" rx="9"/>
+<text class="name" x="264" y="688">커널</text>
+<text class="steps" x="636" y="688" text-anchor="end">9</text>
+<text class="desc" x="264" y="708">새 proc · task · thread와 PID를 만든다</text>
+<line class="flow" x1="450.0" y1="720" x2="450.0" y2="749"/>
+<path class="head" d="M444.0,748 L456.0,748 L450.0,758 Z"/>
+<text class="xlabel" x="464.0" y="744.0">새 프로세스</text>
+<rect class="box" x="250" y="758" width="400" height="54" rx="9"/>
+<text class="name" x="264" y="780">xpcproxy</text>
+<text class="steps" x="636" y="780" text-anchor="end">10–12</text>
+<text class="desc" x="264" y="800">설정을 받아 실행 환경을 준비한다</text>
+<line class="flow" x1="450.0" y1="812" x2="450.0" y2="841"/>
+<path class="head" d="M444.0,840 L456.0,840 L450.0,850 Z"/>
+<text class="xlabel" x="464.0" y="836.0">posix_spawn + SETEXEC</text>
+<rect class="box" x="250" y="850" width="400" height="54" rx="9"/>
+<text class="name" x="264" y="872">커널</text>
+<text class="steps" x="636" y="872" text-anchor="end">13</text>
+<text class="desc" x="264" y="892">앱과 dyld를 매핑하고 저장된 PC를 dyld로 맞춘다</text>
+<line class="flow" x1="450.0" y1="904" x2="450.0" y2="969"/>
+<path class="head" d="M444.0,968 L456.0,968 L450.0,978 Z"/>
+<text class="xlabel" x="464.0" y="946.0">ERET</text>
+<rect class="box" x="250" y="978" width="400" height="54" rx="9"/>
+<text class="name" x="264" y="1000">dyld</text>
+<text class="steps" x="636" y="1000" text-anchor="end">14</text>
+<text class="desc" x="264" y="1020">라이브러리 연결 · 초기화 후 진입 함수를 부른다</text>
+<line class="flow" x1="450.0" y1="1032" x2="450.0" y2="1061"/>
+<path class="head" d="M444.0,1060 L456.0,1060 L450.0,1070 Z"/>
+<text class="xlabel" x="464.0" y="1056.0">main</text>
+<rect class="box" x="250" y="1070" width="400" height="54" rx="9"/>
+<text class="name" x="264" y="1092">앱 main → UIApplicationMain</text>
+<text class="steps" x="636" y="1092" text-anchor="end">15</text>
+<text class="desc" x="264" y="1112">델리게이트 클래스를 이름으로 찾는다</text>
+<line class="flow" x1="450.0" y1="1124" x2="450.0" y2="1153"/>
+<path class="head" d="M444.0,1152 L456.0,1152 L450.0,1162 Z"/>
+<text class="xlabel" x="464.0" y="1148.0">클래스</text>
+<rect class="box" x="250" y="1162" width="400" height="54" rx="9"/>
+<text class="name" x="264" y="1184">AppDelegate.init()</text>
+<text class="steps" x="636" y="1184" text-anchor="end">15</text>
+<text class="desc" x="264" y="1204">델리게이트 인스턴스가 만들어진다</text>
+<path class="side" d="M650,777.0 L720,777.0 L720,593.0 L659,593.0"/>
+<path class="side-head" d="M660,587.0 L660,599.0 L650,593.0 Z"/>
+<path class="side" d="M650,609.0 L704,609.0 L704,793.0 L659,793.0"/>
+<path class="side-head" d="M660,787.0 L660,799.0 L650,793.0 Z"/>
+<text class="clabel" x="732" y="685.0">설정 요청 (10)</text>
+<text class="clabel" x="732" y="703.0">↔ blob · ports · fds</text>
+<metadata><c2pa:manifest>AAAWgmp1bWIAAAAeanVtZGMycGEAEQAQgAAAqgA4m3EDYzJwYQAAABZcanVtYgAAAEdqdW1kYzJtYQARABCAAACqADibcQN1cm46YzJwYToxYWZiODM3OC05NDc1LTQ0YTctYjM5Zi04ZDYxOTJmMDU2YWMAAAADl2p1bWIAAAApanVtZGMyYXMAEQAQgAAAqgA4m3EDYzJwYS5hc3NlcnRpb25zAAAAALxqdW1iAAAARGp1bWRjYm9yABEAEIAAAKoAOJtxE2MycGEuaW5ncmVkaWVudC52MwAAAAAYYzJzaEdxiAx9UZz0+SyvydmiqwEAAABwY2JvcqNpZGM6Zm9ybWF0bWltYWdlL3N2Zyt4bWxqaW5zdGFuY2VJRHgseG1wOmlpZDo3NjU4Y2E3YS02NjY0LTQ3MzctYWFiNS05NWRlYTM1NGUwNGFscmVsYXRpb25zaGlwaHBhcmVudE9mAAAB4mp1bWIAAABBanVtZGNib3IAEQAQgAAAqgA4m3ETYzJwYS5hY3Rpb25zLnYyAAAAABhjMnNoB2K/Pzhn4AFaRJKvK/yebQAAAZljYm9yomdhY3Rpb25zgqJmYWN0aW9ua2MycGEub3BlbmVkanBhcmFtZXRlcnOha2luZ3JlZGllbnRzgaJjdXJseC1zZWxmI2p1bWJmPWMycGEuYXNzZXJ0aW9ucy9jMnBhLmluZ3JlZGllbnQudjNkaGFzaFgg20yw07l0zlxo/GgrJGatAzeUR9lzVMmLN9lWD4/Il4KkZmFjdGlvbngdY29tLmFudGhyb3BpYy5jbGF1ZGUucHJvdmlkZWRqcGFyYW1ldGVyc6F4H2NvbS5hbnRocm9waWMub3JpZ2luLWNvbmZpZGVuY2VndW5rbm93bmtkZXNjcmlwdGlvbnhmQ2xhdWRlIHByb3ZpZGVkIHRoaXMgZmlsZSBhdCB0aGUgcmVxdWVzdCBvZiBhIHVzZXIgYW5kIG1heSBoYXZlIGNyZWF0ZWQgb3IgbW9kaWZpZWQgdGhlIGZpbGUgY29udGVudHMubXNvZnR3YXJlQWdlbnShZG5hbWVmQ2xhdWRlcmFsbEFjdGlvbnNJbmNsdWRlZPUAAADIanVtYgAAAEBqdW1kY2JvcgARABCAAACqADibcRNjMnBhLmhhc2guZGF0YQAAAAAYYzJzaJojAf7mZqcxMhAvUJzZBzMAAACAY2JvcqVjYWxnZnNoYTI1NmNwYWRMAAAAAAAAAAAAAAAAZGhhc2hYII3WQrlavUlEwqEd3eDwSGVpixiwupE8uDYrUEvV8yxhZG5hbWVuanVtYmYgbWFuaWZlc3RqZXhjbHVzaW9uc4GiZXN0YXJ0GSGsZmxlbmd0aBkeBAAAAj5qdW1iAAAAJ2p1bWRjMmNsABEAEIAAAKoAOJtxA2MycGEuY2xhaW0udjIAAAACD2Nib3KlY2FsZ2ZzaGEyNTZpc2lnbmF0dXJleE1zZWxmI2p1bWJmPS9jMnBhL3VybjpjMnBhOjFhZmI4Mzc4LTk0NzUtNDRhNy1iMzlmLThkNjE5MmYwNTZhYy9jMnBhLnNpZ25hdHVyZWppbnN0YW5jZUlEeCx4bXA6aWlkOmU2MzE4MThkLTI3MDAtNDRjMC05Y2VkLTM2NmYxYWU2NmMxYnJjcmVhdGVkX2Fzc2VydGlvbnODomN1cmx4LXNlbGYjanVtYmY9YzJwYS5hc3NlcnRpb25zL2MycGEuaW5ncmVkaWVudC52M2RoYXNoWCDbTLDTuXTOXGj8aCskZq0DN5RH2XNUyYs32VYPj8iXgqJjdXJseCpzZWxmI2p1bWJmPWMycGEuYXNzZXJ0aW9ucy9jMnBhLmFjdGlvbnMudjJkaGFzaFggbkf0Hn9GIbVaPMSS3kEFHkJok4BlXPBiBtY+LBdxIwqiY3VybHgpc2VsZiNqdW1iZj1jMnBhLmFzc2VydGlvbnMvYzJwYS5oYXNoLmRhdGFkaGFzaFggMOo5aWuthhLC1sj+4oZSARQel0ikLohZsI5+SfR2ZWF0Y2xhaW1fZ2VuZXJhdG9yX2luZm+jZG5hbWVvQW50aHJvcGljIEZpbGVzZ3ZlcnNpb25lMS4wLjBrc3BlY1ZlcnNpb25lMi40LjAAABA4anVtYgAAAChqdW1kYzJjcwARABCAAACqADibcQNjMnBhLnNpZ25hdHVyZQAAABAIY2JvctKEWQISogEmGCFZAgowggIGMIIBjaADAgECAhRA5aAK7sI50L64g/oGQgU9Z1UTADAKBggqhkjOPQQDAzBJMRcwFQYDVQQKEw5BbnRocm9waWMsIFBCQzEuMCwGA1UEAxMlQW50aHJvcGljIENvbnRlbnQgQ3JlZGVudGlhbHMgUm9vdCBDQTAeFw0yNjA4MDcxODQzNTZaFw0yODA4MDYxOTQzNTZaMEQxFzAVBgNVBAoTDkFudGhyb3BpYywgUEJDMSkwJwYDVQQDEyBBbnRocm9waWMgQ2xhdWRlIENvbnRlbnQgU2lnbmluZzBZMBMGByqGSM49AgEGCCqGSM49AwEHA0IABJh6CmvLUBgFFNU0vUKlOVtE6djd17L5SuwX0LemFisBM3dkd/3cyjxFA3Qo5S46fX0/ihY0VZ7mfb9KF703t5OjWDBWMA4GA1UdDwEB/wQEAwIHgDAVBgNVHSUEDjAMBgorBgEEAYPoXgIBMAwGA1UdEwEB/wQCMAAwHwYDVR0jBBgwFoAUzlHiBIFOZFsj+OPEz5o+nMHXXMIwCgYIKoZIzj0EAwMDZwAwZAIwMXMdFJ4BetLLVY7ORuE9noqbbAZOZn/aArXyTwFAZfKrPzxF2vPoJNf1+UCdg1XGAjBwX1zd9WGqYkqmL5SFqw1QySjr1zJfpJM9+1rdDwSPLMOPOjKuiXjoU/pUUeG9RwmhY3BhZFkNngAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPZYQGFE8cUCSq2foLPwd4nvS4Y9mJALf0omfdoeyljKUtBSXNAe+FQ9T79Xzk94afYSf2EZytLz2eKkkVBlI+uIG1w=</c2pa:manifest></metadata></svg>

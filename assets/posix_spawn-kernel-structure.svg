@@ -1,0 +1,146 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="950" height="1200.75" viewBox="0 0 950 1200.75" font-family="-apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Noto Sans KR', 'Noto Sans CJK KR', sans-serif" xmlns:c2pa="http://c2pa.org/manifest">
+<style>
+  .proc   { fill: #f6f8fa; stroke: #d1d9e0; stroke-width: 1.25; }
+  .proc-main { fill: #f6f8fa; stroke: #0969da; stroke-width: 1.75; }
+  .box    { fill: #ffffff; stroke: #d1d9e0; stroke-width: 1; }
+  .title  { fill: #1f2328; font-size: 16.5px; font-weight: 700; }
+  .sub    { fill: #59636e; font-size: 12.5px; }
+  .num    { fill: #0969da; font-size: 12px; font-weight: 700; }
+  .name   { fill: #1f2328; font-size: 13.5px; font-weight: 600; }
+  .mono   { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, 'DejaVu Sans Mono', monospace; font-size: 13px; }
+  .desc   { fill: #59636e; font-size: 12.5px; }
+  .flow   { stroke: #818b98; stroke-width: 1.5; fill: none; }
+  .flow-head { fill: #818b98; }
+  .link   { stroke: #818b98; stroke-width: 1.25; fill: none; stroke-dasharray: 4 4; }
+  .link-head { fill: #818b98; }
+  .clabel { fill: #59636e; font-size: 12px; font-weight: 600; }
+  .cross  { stroke: #0969da; stroke-width: 2; fill: none; }
+  .cross-head { fill: #0969da; }
+  .xlabel { fill: #0969da; font-size: 12.5px; font-weight: 600; }
+  @media (prefers-color-scheme: dark) {
+    .proc   { fill: #151b23; stroke: #3d444d; }
+    .proc-main { fill: #151b23; stroke: #4493f8; }
+    .box    { fill: #0d1117; stroke: #3d444d; }
+    .title, .name { fill: #f0f6fc; }
+    .sub, .desc, .clabel { fill: #9198a1; }
+    .num    { fill: #4493f8; }
+    .flow, .link { stroke: #656c76; }
+    .flow-head, .link-head { fill: #656c76; }
+    .cross  { stroke: #4493f8; }
+    .cross-head, .xlabel { fill: #4493f8; }
+  }
+</style>
+<rect class="proc-main" x="20" y="20" width="380" height="813" rx="14"/>
+<text class="title" x="40" y="50">호출한 스레드</text>
+<text class="sub" x="40" y="69">launchd 또는 xpcproxy의 스레드 · 커널 모드</text>
+<rect class="box" x="38" y="84" width="344" height="65" rx="9"/>
+<text class="num" x="52" y="109">시작</text>
+<text class="name mono" x="86" y="109">커널 쪽 posix_spawn()</text>
+<text class="desc" x="86" y="129">인자 정리를 마친 직후</text>
+<line class="flow" x1="210.0" y1="149" x2="210.0" y2="164"/>
+<path class="flow-head" d="M205.0,163 L215.0,163 L210.0,171 Z"/>
+<rect class="box" x="38" y="171" width="344" height="84" rx="9"/>
+<text class="num" x="52" y="196">1</text>
+<text class="name mono" x="70" y="196">fork1 / cloneproc</text>
+<text class="name mono" x="70" y="215">→ forkproc · fork_create_child</text>
+<text class="desc" x="70" y="235">새 proc · task · 첫 thread</text>
+<line class="flow" x1="210.0" y1="255" x2="210.0" y2="270"/>
+<path class="flow-head" d="M205.0,269 L215.0,269 L210.0,277 Z"/>
+<rect class="box" x="38" y="277" width="344" height="84" rx="9"/>
+<text class="num" x="52" y="302">2</text>
+<text class="name mono" x="70" y="302">exec_activate_image</text>
+<text class="name mono" x="70" y="321">→ exec_mach_imgact</text>
+<text class="desc" x="70" y="341">실행 파일 형식 판별</text>
+<line class="flow" x1="210.0" y1="361" x2="210.0" y2="376"/>
+<path class="flow-head" d="M205.0,375 L215.0,375 L210.0,383 Z"/>
+<rect class="box" x="38" y="383" width="344" height="65" rx="9"/>
+<text class="num" x="52" y="408">3</text>
+<text class="name mono" x="70" y="408">load_machfile</text>
+<text class="desc" x="70" y="428">새 map B에 실행 파일 · dyld 매핑</text>
+<line class="flow" x1="210.0" y1="448" x2="210.0" y2="463"/>
+<path class="flow-head" d="M205.0,462 L215.0,462 L210.0,470 Z"/>
+<rect class="box" x="38" y="470" width="344" height="65" rx="9"/>
+<text class="num" x="52" y="495">4</text>
+<text class="name mono" x="70" y="495">swap_task_map</text>
+<text class="desc" x="70" y="515">task의 map을 A → B로 교체</text>
+<line class="flow" x1="210.0" y1="535" x2="210.0" y2="550"/>
+<path class="flow-head" d="M205.0,549 L215.0,549 L210.0,557 Z"/>
+<rect class="box" x="38" y="557" width="344" height="65" rx="9"/>
+<text class="num" x="52" y="582">5</text>
+<text class="name mono" x="70" y="582">activate_exec_state</text>
+<text class="desc" x="70" y="602">저장된 PC = dyld 진입점</text>
+<line class="flow" x1="210.0" y1="622" x2="210.0" y2="637"/>
+<path class="flow-head" d="M205.0,636 L215.0,636 L210.0,644 Z"/>
+<rect class="box" x="38" y="644" width="344" height="84" rx="9"/>
+<text class="num" x="52" y="669">6</text>
+<text class="name mono" x="70" y="669">create_unix_stack</text>
+<text class="name mono" x="70" y="688">exec_copyout_strings</text>
+<text class="desc" x="70" y="708">저장된 SP = 인자가 쌓인 스택</text>
+<line class="flow" x1="210.0" y1="728" x2="210.0" y2="743"/>
+<path class="flow-head" d="M205.0,742 L215.0,742 L210.0,750 Z"/>
+<rect class="box" x="38" y="750" width="344" height="65" rx="9"/>
+<text class="num" x="52" y="775">7</text>
+<text class="name mono" x="70" y="775">task_clear_return_wait</text>
+<text class="desc" x="70" y="795">첫 스레드의 대기 해제</text>
+<rect class="proc" x="550" y="20" width="380" height="666.75" rx="14"/>
+<text class="title" x="570" y="50">새 프로세스의 커널 자료구조</text>
+<text class="sub" x="570" y="69">커널 메모리에 생기고 서로 연결된다</text>
+<rect class="box" x="568" y="182.0" width="344" height="62" rx="9"/>
+<text class="name mono" x="582" y="207.0">proc</text>
+<text class="desc" x="582" y="227.0">PID · 부모 · 열린 파일 · 작업 디렉터리</text>
+<rect class="box" x="568" y="270.0" width="344" height="62" rx="9"/>
+<text class="name mono" x="582" y="295.0">task</text>
+<text class="desc" x="582" y="315.0">주소 공간과 스레드들을 묶는다</text>
+<rect class="box" x="568" y="428.0" width="344" height="62" rx="9"/>
+<text class="name mono" x="582" y="453.0">vm_map</text>
+<text class="desc" x="582" y="473.0">A(빈 틀) → B(실행용)</text>
+<rect class="box" x="568" y="606.75" width="344" height="62" rx="9"/>
+<text class="name mono" x="582" y="631.75">thread (첫 스레드)</text>
+<text class="desc" x="582" y="651.75">대기 상태 · 저장된 PC · SP</text>
+<line class="flow" x1="598" y1="244.0" x2="598" y2="270.0"/>
+<line class="flow" x1="598" y1="332.0" x2="598" y2="428.0"/>
+<line class="flow" x1="598" y1="490.0" x2="598" y2="606.75"/>
+<path class="link" d="M382,213.0 C475.0,213.0 475.0,213.0 560,213.0"/>
+<path class="link-head" d="M559,208.0 L559,218.0 L568,213.0 Z"/>
+<text class="clabel" x="475.0" y="205.0" text-anchor="middle">만든다</text>
+<path class="link" d="M382,407.5 C475.0,407.5 475.0,451.0 560,451.0"/>
+<path class="link-head" d="M559,446.0 L559,456.0 L568,451.0 Z"/>
+<text class="clabel" x="475.0" y="399.5" text-anchor="middle">B를 만든다</text>
+<path class="link" d="M382,510.5 C475.0,510.5 475.0,467.0 560,467.0"/>
+<path class="link-head" d="M559,462.0 L559,472.0 L568,467.0 Z"/>
+<text class="clabel" x="475.0" y="459.0" text-anchor="middle">A → B</text>
+<path class="link" d="M382,581.5 C475.0,581.5 475.0,629.75 560,629.75"/>
+<path class="link-head" d="M559,624.75 L559,634.75 L568,629.75 Z"/>
+<text class="clabel" x="475.0" y="573.5" text-anchor="middle">PC 기록</text>
+<path class="link" d="M382,694.0 C475.0,694.0 475.0,645.75 560,645.75"/>
+<path class="link-head" d="M559,640.75 L559,650.75 L568,645.75 Z"/>
+<text class="clabel" x="475.0" y="637.75" text-anchor="middle">SP 기록</text>
+<rect class="proc" x="550" y="710.75" width="380" height="294.0" rx="14"/>
+<text class="title" x="570" y="740.75">새 첫 스레드</text>
+<text class="sub" x="570" y="759.75">풀려난 뒤 · 커널 모드</text>
+<rect class="box" x="568" y="774.75" width="344" height="56" rx="9"/>
+<text class="name mono" x="582" y="797.75">task_wait_to_return</text>
+<text class="desc" x="582" y="816.75">대기가 다 풀렸는지 확인</text>
+<line class="flow" x1="740.0" y1="830.75" x2="740.0" y2="845.75"/>
+<path class="flow-head" d="M735.0,844.75 L745.0,844.75 L740.0,852.75 Z"/>
+<rect class="box" x="568" y="852.75" width="344" height="56" rx="9"/>
+<text class="name mono" x="582" y="875.75">thread_bootstrap_return</text>
+<text class="desc" x="582" y="894.75">→ return_to_user · 저장된 PC → ELR_EL1</text>
+<line class="flow" x1="740.0" y1="908.75" x2="740.0" y2="923.75"/>
+<path class="flow-head" d="M735.0,922.75 L745.0,922.75 L740.0,930.75 Z"/>
+<rect class="box" x="568" y="930.75" width="344" height="56" rx="9"/>
+<text class="name mono" x="582" y="953.75">ERET</text>
+<text class="desc" x="582" y="972.75">사용자 모드로 전환</text>
+<path class="cross" d="M382,782.5 C475.0,782.5 475.0,802.75 559,802.75"/>
+<path class="cross-head" d="M558,796.75 L558,808.75 L568,802.75 Z"/>
+<text class="xlabel" x="475.0" y="772.5" text-anchor="middle">깨운다</text>
+<rect class="proc" x="550" y="1048.75" width="380" height="132" rx="14"/>
+<text class="title" x="570" y="1078.75">사용자 모드</text>
+<text class="sub" x="570" y="1097.75">새 앱 프로세스</text>
+<rect class="box" x="568" y="1112.75" width="344" height="50" rx="9"/>
+<text class="name mono" x="582" y="1134.75">__dyld_start</text>
+<text class="desc" x="582" y="1152.75">처음 실행되는 사용자 코드 → dyld</text>
+<line class="cross" x1="740.0" y1="986.75" x2="740.0" y2="1103.75"/>
+<path class="cross-head" d="M734.0,1102.75 L746.0,1102.75 L740.0,1112.75 Z"/>
+<text class="xlabel" x="752.0" y="1031.75">ELR_EL1의 주소부터 실행</text>
+<metadata><c2pa:manifest>AAAWgmp1bWIAAAAeanVtZGMycGEAEQAQgAAAqgA4m3EDYzJwYQAAABZcanVtYgAAAEdqdW1kYzJtYQARABCAAACqADibcQN1cm46YzJwYTo2NzA5NmQ3MS0wY2RkLTQ5MjMtYjg2Zi03ZTQxYTlkMDc2MTIAAAADl2p1bWIAAAApanVtZGMyYXMAEQAQgAAAqgA4m3EDYzJwYS5hc3NlcnRpb25zAAAAALxqdW1iAAAARGp1bWRjYm9yABEAEIAAAKoAOJtxE2MycGEuaW5ncmVkaWVudC52MwAAAAAYYzJzaHkP86oHS0aRd0kiDVuVIi0AAABwY2JvcqNpZGM6Zm9ybWF0bWltYWdlL3N2Zyt4bWxqaW5zdGFuY2VJRHgseG1wOmlpZDo2NGEzNzA3Zi1iODQ2LTQxOWYtYWJlYi0xYjc4NzY0NmFkZDBscmVsYXRpb25zaGlwaHBhcmVudE9mAAAB4mp1bWIAAABBanVtZGNib3IAEQAQgAAAqgA4m3ETYzJwYS5hY3Rpb25zLnYyAAAAABhjMnNo6y0Uf3s12cXFZvdC6P1AfwAAAZljYm9yomdhY3Rpb25zgqJmYWN0aW9ua2MycGEub3BlbmVkanBhcmFtZXRlcnOha2luZ3JlZGllbnRzgaJjdXJseC1zZWxmI2p1bWJmPWMycGEuYXNzZXJ0aW9ucy9jMnBhLmluZ3JlZGllbnQudjNkaGFzaFggy9IO6ZjWq133Jqu+ra7nDk47WCPy2XOmWCVkqdZlSmWkZmFjdGlvbngdY29tLmFudGhyb3BpYy5jbGF1ZGUucHJvdmlkZWRqcGFyYW1ldGVyc6F4H2NvbS5hbnRocm9waWMub3JpZ2luLWNvbmZpZGVuY2VndW5rbm93bmtkZXNjcmlwdGlvbnhmQ2xhdWRlIHByb3ZpZGVkIHRoaXMgZmlsZSBhdCB0aGUgcmVxdWVzdCBvZiBhIHVzZXIgYW5kIG1heSBoYXZlIGNyZWF0ZWQgb3IgbW9kaWZpZWQgdGhlIGZpbGUgY29udGVudHMubXNvZnR3YXJlQWdlbnShZG5hbWVmQ2xhdWRlcmFsbEFjdGlvbnNJbmNsdWRlZPUAAADIanVtYgAAAEBqdW1kY2JvcgARABCAAACqADibcRNjMnBhLmhhc2guZGF0YQAAAAAYYzJzaAzPzhHrvHpdeHaAuCLF9YUAAACAY2JvcqVjYWxnZnNoYTI1NmNwYWRMAAAAAAAAAAAAAAAAZGhhc2hYIPuowLpf4dJS5QsL11UOm8RK2jKTY7TuzPBJ+vrRrmf6ZG5hbWVuanVtYmYgbWFuaWZlc3RqZXhjbHVzaW9uc4GiZXN0YXJ0GSUkZmxlbmd0aBkeBAAAAj5qdW1iAAAAJ2p1bWRjMmNsABEAEIAAAKoAOJtxA2MycGEuY2xhaW0udjIAAAACD2Nib3KlY2FsZ2ZzaGEyNTZpc2lnbmF0dXJleE1zZWxmI2p1bWJmPS9jMnBhL3VybjpjMnBhOjY3MDk2ZDcxLTBjZGQtNDkyMy1iODZmLTdlNDFhOWQwNzYxMi9jMnBhLnNpZ25hdHVyZWppbnN0YW5jZUlEeCx4bXA6aWlkOmZkMmE1ODI1LTBiN2EtNDc2Zi1iMDc2LTg4YWFiM2FmMDc3ZnJjcmVhdGVkX2Fzc2VydGlvbnODomN1cmx4LXNlbGYjanVtYmY9YzJwYS5hc3NlcnRpb25zL2MycGEuaW5ncmVkaWVudC52M2RoYXNoWCDL0g7pmNarXfcmq76trucOTjtYI/LZc6ZYJWSp1mVKZaJjdXJseCpzZWxmI2p1bWJmPWMycGEuYXNzZXJ0aW9ucy9jMnBhLmFjdGlvbnMudjJkaGFzaFggVRyF6IbXD9Epx7sFZhg9ZBIuviEZaFvZQGfgvVN7hUqiY3VybHgpc2VsZiNqdW1iZj1jMnBhLmFzc2VydGlvbnMvYzJwYS5oYXNoLmRhdGFkaGFzaFggXqUq8a3TBfGjybsTum5tPwWeSocM5Vi0DPfYZLyLDTF0Y2xhaW1fZ2VuZXJhdG9yX2luZm+jZG5hbWVvQW50aHJvcGljIEZpbGVzZ3ZlcnNpb25lMS4wLjBrc3BlY1ZlcnNpb25lMi40LjAAABA4anVtYgAAAChqdW1kYzJjcwARABCAAACqADibcQNjMnBhLnNpZ25hdHVyZQAAABAIY2JvctKEWQISogEmGCFZAgowggIGMIIBjaADAgECAhRA5aAK7sI50L64g/oGQgU9Z1UTADAKBggqhkjOPQQDAzBJMRcwFQYDVQQKEw5BbnRocm9waWMsIFBCQzEuMCwGA1UEAxMlQW50aHJvcGljIENvbnRlbnQgQ3JlZGVudGlhbHMgUm9vdCBDQTAeFw0yNjA4MDcxODQzNTZaFw0yODA4MDYxOTQzNTZaMEQxFzAVBgNVBAoTDkFudGhyb3BpYywgUEJDMSkwJwYDVQQDEyBBbnRocm9waWMgQ2xhdWRlIENvbnRlbnQgU2lnbmluZzBZMBMGByqGSM49AgEGCCqGSM49AwEHA0IABJh6CmvLUBgFFNU0vUKlOVtE6djd17L5SuwX0LemFisBM3dkd/3cyjxFA3Qo5S46fX0/ihY0VZ7mfb9KF703t5OjWDBWMA4GA1UdDwEB/wQEAwIHgDAVBgNVHSUEDjAMBgorBgEEAYPoXgIBMAwGA1UdEwEB/wQCMAAwHwYDVR0jBBgwFoAUzlHiBIFOZFsj+OPEz5o+nMHXXMIwCgYIKoZIzj0EAwMDZwAwZAIwMXMdFJ4BetLLVY7ORuE9noqbbAZOZn/aArXyTwFAZfKrPzxF2vPoJNf1+UCdg1XGAjBwX1zd9WGqYkqmL5SFqw1QySjr1zJfpJM9+1rdDwSPLMOPOjKuiXjoU/pUUeG9RwmhY3BhZFkNngAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPZYQMF/yyrac0+zifokW74hEXMxqHcQo8bg7LwOQ7AmY5py5f6XbAgX0IqW5bSto4+82gHnIiLEWaIiBEToPivmeTs=</c2pa:manifest></metadata></svg>
